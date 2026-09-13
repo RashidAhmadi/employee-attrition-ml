@@ -78,5 +78,135 @@ plt.ylabel("Number of Employee")
 plt.tight_layout()
 plt.show()    
     
+# %%
     
+# ============================================================
+# 4. Numerical features
+# ============================================================
+
+numeric_columns = df.select_dtypes(
+    include=np.number
+).columns.tolist()
+
+print("\n" + "=" * 60)
+print("NUMERICAL FEATURES")
+print("=" * 60)
+
+print(numeric_columns)
+
+print("\nNumber of numerical features:", len(numeric_columns))
+
+print("\nNumerical summary:")
+print(df[numeric_columns].describe().T)
+
+
+# %%
+
+# ============================================================
+# 5. Categorical features
+# ============================================================
+
+categorical_columns = df.select_dtypes(
+    include="object"
+    ).columns.tolist()
+
+print("\n" + "=" * 60)
+print("CATEGORICAL FEATURES")
+print("=" * 60)
+
+print(categorical_columns)
+
+print("\nNumber of categorical features:", len(categorical_columns))
+
+
+# %%
+
+# ============================================================
+# 6. Attrition by categorical features
+# ============================================================
+
+categorical_to_analyze = [
+    "OverTime",
+    "JobRole",
+    "BusinessTravel",
+    "MaritalStatus",
+    "Department",
+    "JobLevel",
+]
+
+for column in categorical_to_analyze:
+
+    print("\n" + "=" * 60)
+    print(f"ATTRITION RATE BY {column.upper()}")
+    print("=" * 60)
+
+    attrition_rate = (
+        df.groupby(column)["Attrition"]
+        .apply(lambda x: (x == "Yes").mean() * 100)
+        .sort_values(ascending=False)
+    )
+
+    print(attrition_rate.round(2))
+
+
+
+# %%
+
+plt.figure(figsize=(7, 5))
+
+sns.barplot(
+    data=df,
+    x="OverTime",
+    y="Attrition",
+    estimator=lambda x: (x == "Yes").mean()
+)
+
+plt.title("Attrition Rate by Overtime")
+plt.xlabel("Overtime")
+plt.ylabel("Attrition Rate")
+
+plt.tight_layout()
+plt.show()
+
+
+# %%
+# ============================================================
+# 7. Attrition by numerical features
+# ============================================================
+
+numerical_to_analyze = [
+    "Age",
+    "MonthlyIncome",
+    "DistanceFromHome",
+    "TotalWorkingYears",
+    "YearsAtCompany",
+    "YearsInCurrentRole",
+    "YearsSinceLastPromotion",
+    "YearsWithCurrManager",
+]
+
+
+for column in numerical_to_analyze:
+
+    plt.figure(figsize=(7, 4))
+
+    sns.boxplot(
+        data=df,
+        x="Attrition",
+        y=column
+    )
+
+    plt.title(f"{column} vs. Attrition")
+    plt.xlabel("Attrition")
+    plt.ylabel(column)
+
+    plt.tight_layout()
+    plt.show()
+
+
+
+# %%
+
+
+
 
