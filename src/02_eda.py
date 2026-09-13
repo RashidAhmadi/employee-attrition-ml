@@ -152,13 +152,19 @@ for column in categorical_to_analyze:
 
 # %%
 
+Overtime_attrition = (
+    df.groupby("OverTime")["Attrition"]
+    .apply(lambda x: (x == "Yes").mean() * 100)
+    .sort_values(ascending=False)
+)
+
+
 plt.figure(figsize=(7, 5))
 
+
 sns.barplot(
-    data=df,
-    x="OverTime",
-    y="Attrition",
-    estimator=lambda x: (x == "Yes").mean()
+    x=Overtime_attrition.index,
+    y=Overtime_attrition.values,
 )
 
 plt.title("Attrition Rate by Overtime")
@@ -207,6 +213,48 @@ for column in numerical_to_analyze:
 
 # %%
 
+# ============================================================
+# 8. Correlation matrix
+# ============================================================
+
+plt.figure(figsize=(14, 10))
+
+correlation_matrix = df[numeric_columns].corr()
+
+sns.heatmap(
+    correlation_matrix,
+    cmap="coolwarm",
+    center=0
+)
+
+plt.title("Correlation Matrix - Numerical Features")
+
+plt.tight_layout()
+plt.show()
+
+# %%
+
+# ============================================================
+# 9. Attrition Rate by job role
+# ============================================================
+
+job_role_attrition = (
+    df.groupby("JobRole")["Attrition"]
+    .apply(lambda x: (x == "Yes").mean() * 100)
+    .sort_values(ascending=False)
+)
 
 
+plt.figure(figsize=(10, 6))
 
+sns.barplot(
+    x=job_role_attrition.values,
+    y=job_role_attrition.index
+)
+
+plt.title("Attrition Rate by Job Role")
+plt.xlabel("Attrition Rate (%)")
+plt.ylabel("Job Role")
+
+plt.tight_layout()
+plt.show()
