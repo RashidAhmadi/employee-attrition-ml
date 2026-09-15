@@ -361,7 +361,7 @@ sns.barplot(
     data=results_melted,
     x="Model",
     y="Score",
-    heu="Metric"
+    hue="Metric"
     )
 
 plt.title(
