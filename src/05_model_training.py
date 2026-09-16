@@ -323,7 +323,7 @@ print(
 # ============================================================
 results_path = (
     PROJECT_ROOT
-    / "reports"
+    / "reports" / "results"
     / "model_training_results.csv"
 )
 

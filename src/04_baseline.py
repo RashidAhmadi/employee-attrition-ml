@@ -358,7 +358,7 @@ baseline_results = pd.DataFrame({
 
 results_path = (
     PROJECT_ROOT
-    / "reports"
+    / "reports" / "results"
     / "baseline_results.csv"
 )
 

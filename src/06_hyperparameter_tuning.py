@@ -16,7 +16,8 @@ Hyperparameter tuning using Grid Search.
 import pandas as pd
 import optuna
 import pyhopper
-import importlib.metadata
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from pathlib import Path
 from sklearn.model_selection import ( train_test_split, 
@@ -219,7 +220,7 @@ results = pd.DataFrame(grid_search.cv_results_)
 
 results_path = (
     PROJECT_ROOT
-    / "reports"
+    / "reports" / "results"
     / "logistic_grid_search_results.csv"
 )
 
@@ -422,7 +423,7 @@ tuning_results = pd.DataFrame({
 
 results_path = (
     PROJECT_ROOT
-    / "reports"
+    / "reports" / "results"
     / "grid_search_results.csv"
 )
 
@@ -574,7 +575,7 @@ random_search_results = pd.DataFrame({
 
 results_path = (
     PROJECT_ROOT
-    / "reports"
+    / "reports" / "results"
     / "random_search_results.csv"
 )
 
@@ -695,7 +696,7 @@ optuna_results = pd.DataFrame({
 
 results_path = (
     PROJECT_ROOT
-    / "reports"
+    / "reports" / "results"
     / "optuna_results.csv"
 )
 
@@ -794,7 +795,7 @@ pyhopper_results = pd.DataFrame({
 
 results_path = (
     PROJECT_ROOT
-    / "reports"
+    / "reports" / "results"
     / "pyhopper_results.csv"
 )
 
@@ -804,3 +805,61 @@ pyhopper_results.to_csv(
 )
 
 print("\nPyHopper results saved.")
+# %%
+
+# ============================================================
+# 41. Compare tuning methods
+# ============================================================
+
+tuning_comparison = pd.DataFrame({
+    "Method": [
+        "Grid Search",
+        "Random Search",
+        "Optuna",
+        "PyHopper"
+    ],
+    "XGBoost_CV_ROC_AUC": [
+        xgb_grid_search.best_score_,
+        xgb_random.best_score_,
+        study.best_value,
+        search.best_f
+    ]
+})
+
+results_path = (
+    PROJECT_ROOT
+    / "reports" / "results"
+    / "xgboost_tuning_results.csv"
+)
+
+tuning_comparison.to_csv(
+    results_path,
+    index=False
+)
+
+print("\nXGBoost tuning comparison:")
+print(tuning_comparison)
+
+# %%
+
+plt.figure(figsize=(9, 5))
+
+sns.barplot(
+    data=tuning_comparison,
+    x="Method",
+    y="XGBoost_CV_ROC_AUC"
+)
+
+plt.title("XGBoost Hyperparameter Tuning Comparison")
+plt.xlabel("Tuning Method")
+plt.ylabel("Cross-Validation ROC-AUC")
+plt.ylim(0.75, 0.85)
+plt.tight_layout()
+
+plt.savefig(
+    PROJECT_ROOT / "reports" / "figures" / "xgboost_tuning_comparison.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+plt.show()
