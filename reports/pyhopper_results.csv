@@ -1,0 +1,2 @@
+Model,Best_PyHopper_ROC_AUC,Best_Params
+XGBoost,0.8283602792552832,"{'n_estimators': 386, 'max_depth': 9, 'learning_rate': 0.2, 'subsample': 0.6128557157692793}"
