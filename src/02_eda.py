@@ -34,6 +34,13 @@ DATA_PATH = (
     / "WA_Fn-UseC_-HR-Employee-Attrition.csv"
 )
 
+FIGURES_DIR = PROJECT_ROOT / "reports" / "figures"
+
+FIGURES_DIR.mkdir(
+    parents=True,
+    exist_ok=True
+)
+
 # %%
 # ============================================================
 # 2. Load data
@@ -76,6 +83,17 @@ plt.xlabel("Attrition")
 plt.ylabel("Number of Employee")
 
 plt.tight_layout()
+
+attrition_distribution_path = (
+    FIGURES_DIR
+    / "attrition_distribution.png"
+)
+
+plt.savefig(
+    attrition_distribution_path,
+    dpi=300,
+    bbox_inches="tight"
+)
 plt.show()    
     
 # %%

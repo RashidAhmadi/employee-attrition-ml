@@ -1,0 +1,52 @@
+Feature,Mean_Abs_SHAP
+OverTime_No,1.382717
+NumCompaniesWorked,0.7802259
+MonthlyIncome,0.7438674
+StockOptionLevel,0.71027035
+Age,0.64864916
+DistanceFromHome,0.64109874
+EnvironmentSatisfaction,0.60170335
+YearsWithCurrManager,0.5481075
+RelationshipSatisfaction,0.5347924
+DailyRate,0.51124704
+JobSatisfaction,0.48882243
+BusinessTravel_Travel_Frequently,0.4691382
+MonthlyRate,0.43179035
+HourlyRate,0.38728142
+TotalWorkingYears,0.37288636
+JobRole_Research Scientist,0.37169403
+YearsSinceLastPromotion,0.35104913
+PercentSalaryHike,0.34730768
+Department_Research & Development,0.33935568
+WorkLifeBalance,0.33913812
+JobRole_Laboratory Technician,0.31699973
+YearsInCurrentRole,0.29120386
+JobInvolvement,0.29003283
+Education,0.25837016
+MaritalStatus_Single,0.24796711
+Department_Sales,0.21884713
+YearsAtCompany,0.20151445
+Gender_Female,0.19457462
+JobRole_Sales Executive,0.1842605
+JobLevel,0.1837397
+TrainingTimesLastYear,0.14744672
+BusinessTravel_Non-Travel,0.118972585
+EducationField_Medical,0.10034742
+EducationField_Life Sciences,0.0984533
+MaritalStatus_Married,0.095637366
+MaritalStatus_Divorced,0.090012126
+JobRole_Sales Representative,0.0836512
+EducationField_Marketing,0.06656556
+BusinessTravel_Travel_Rarely,0.05370819
+EducationField_Technical Degree,0.047445856
+JobRole_Manufacturing Director,0.018739128
+JobRole_Healthcare Representative,0.018651435
+JobRole_Manager,0.009106047
+EducationField_Other,0.008386479
+PerformanceRating,0.0
+EducationField_Human Resources,0.0
+Department_Human Resources,0.0
+JobRole_Research Director,0.0
+JobRole_Human Resources,0.0
+Gender_Male,0.0
+OverTime_Yes,0.0
